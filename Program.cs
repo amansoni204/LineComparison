@@ -8,6 +8,7 @@ namespace LineComparison237
 {
     internal class GeometryLineComputataion
     {
+
         public static double LineDistance()
         {
             Console.WriteLine("Enter the first coordinates x1 and y1");
@@ -17,7 +18,7 @@ namespace LineComparison237
             int x2 = Convert.ToInt32(Console.ReadLine());
             int y2 = Convert.ToInt32(Console.ReadLine());
 
-            double d1 = Math.Sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+            double d1 = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));    //with using Pow function.
             Console.WriteLine($"Provided co-ordinates (x1,y1):({x1},{y1})  &  (x2,y2):({x2},{y2})");
             return d1;
         }
@@ -31,6 +32,22 @@ namespace LineComparison237
             else
             {
                 Console.WriteLine("Length value of Line 1 and Line 2 are NOT equal");
+            }
+        }
+        public static void CompareMethod(double line1Distance, double line2Distance)
+        {
+            int CompareToStatus = line1Distance.CompareTo(line2Distance);
+            if (CompareToStatus == 0)
+            {
+                Console.WriteLine("Both first and second lines are having Equal Length.");
+            }
+            else if (CompareToStatus < 0)
+            {
+                Console.WriteLine("Length of first line is less than second line.");
+            }
+            else
+            {
+                Console.WriteLine("Length of first line is greater than second line.");
             }
         }
         static void Main(string[] args)
@@ -47,6 +64,12 @@ namespace LineComparison237
 
             Console.Write("Using Equals Method output is :::: ");
             GeometryLineComputataion.EqualsMethod(line1Distance, line2Distance);
+
+            Console.Write("Using Compare To Method output is ::::");
+            GeometryLineComputataion.CompareMethod(line1Distance, line2Distance);
+
+            
+           
         }
     }
 }
